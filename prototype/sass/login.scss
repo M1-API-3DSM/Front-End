@@ -1,22 +1,22 @@
 @import 'base';
 
-body {
+#__next {
+  height: 100%;
+  width: 100%;
+  margin: 0;
   display: flex;
   background-image: url("../images/login-background.png");
   background-size: cover;
   justify-content: space-between;
   align-items: center;
-  margin-left: 12vw;
-  margin-right: 12vw;
-  height: 100vh;
-  overflow: hidden;
-};
+}
 
 #logo {
   text-align: center;
   text-justify: center;
   font-size: 15rem;
   color: $bronze;
+  margin-left: 12vw;
 }
 
 .form-block {
@@ -29,6 +29,7 @@ body {
   flex-shrink: 0;
   background-color: $dark-brown;
   border-radius: 1.25rem; 
+  margin-right: 12vw;
 }
 
 .form-field {
