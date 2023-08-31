@@ -1,0 +1,83 @@
+@import 'base';
+
+body {
+  display: flex;
+  background-image: url("../images/login-background.png");
+  background-size: cover;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 12vw;
+  margin-right: 12vw;
+  height: 100vh;
+  overflow: hidden;
+};
+
+#logo {
+  text-align: center;
+  text-justify: center;
+  font-size: 15rem;
+  color: $bronze;
+}
+
+.form-block {
+  display: flex;
+  width: 13.375rem;
+  padding: 1.25rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+  background-color: $dark-brown;
+  border-radius: 1.25rem; 
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+  align-self: stretch; 
+}
+
+.form-label {
+  color: $bronze;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; 
+  margin: 0.25rem;
+}
+
+.form-input {
+  height: 1.875rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  color: $white;
+  align-self: stretch; 
+  border-radius: 1.25rem;
+  border: 1px solid $bronze;
+  background-color: $dark-brown;
+}
+
+.form-input:active {
+  border: 1px solid $white;
+}
+
+.form-submit {
+  display: flex;
+  padding: 0.625rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 1.25rem;
+  background-color: $bronze;
+  color: $dark-brown;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; 
+}
+
+input[type="button"], input[type="submit"] {
+  border: none;
+}
