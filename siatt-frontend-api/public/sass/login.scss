@@ -21,12 +21,12 @@
 
 .form-block {
   display: flex;
-  width: 13.375rem;
+  width: 31.3125rem;
   padding: 1.25rem;
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  flex-shrink: 0;
+  flex-shrink: 0; 
   background-color: $dark-brown;
   border-radius: 1.25rem; 
   margin-right: 12vw;

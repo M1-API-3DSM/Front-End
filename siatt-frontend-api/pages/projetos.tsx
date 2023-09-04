@@ -1,8 +1,47 @@
 import Head from 'next/head';
 import React from 'react';
+import CardProjeto, { cardProps } from '../components/card_projeto';
+import { formataDataYYYYMMDD } from '../utils/DateUtils';
+import { GetServerSideProps } from 'next';
 import '../public/css/projetos.css';
 
-export default function Login() {
+export async function fetchData(): Promise<cardProps[]> {
+  const projetos = [
+    {
+      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+      data_entrega: formataDataYYYYMMDD(new Date()),
+      progresso: 20,
+    },
+    {
+      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+      data_entrega: formataDataYYYYMMDD(new Date()),
+      progresso: 20,
+    },
+    {
+      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+      data_entrega: formataDataYYYYMMDD(new Date()),
+      progresso: 20,
+    },
+    {
+      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+      data_entrega: formataDataYYYYMMDD(new Date()),
+      progresso: 20,
+    }
+  ];
+
+  return projetos;
+}
+
+export async function getServerSideProps() {
+  const data = await fetchData();
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+function Projetos({ data } : { data: cardProps[] }) {
   return(
     <>
       <Head>
@@ -19,41 +58,9 @@ export default function Login() {
     <div className="conteudo">
       <input type="button" value="+ Adicionar Projeto" id="botao-projetos"></input>
       <div id="projetos">
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
-        <div className="card-projeto">
-          <span>Sistema de Reconhecimento de motociclistas</span>
-          <span>Entrega: 27/10/2002</span>
-          <span>Progresso: 0%</span>
-        </div>
+        {data.map(((projeto, index)=> {
+          return <CardProjeto key={index} {...projeto} />
+        }))}
       </div>
     </div>
     <footer>
@@ -62,3 +69,5 @@ export default function Login() {
     </>
   )
 }
+
+export default Projetos;
