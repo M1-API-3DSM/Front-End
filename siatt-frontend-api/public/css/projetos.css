@@ -86,7 +86,7 @@ body {
 .conteudo {
   display: flex;
   width: 80vw;
-  height: 69.25vh;
+  height: 68.5vh;
   padding-top: 1rem;
   flex-direction: column;
   align-items: flex-start;
@@ -131,6 +131,9 @@ body {
   align-self: stretch;
   flex-wrap: wrap;
   overflow-y: scroll;
+}
+#projetos a {
+  text-decoration: none;
 }
 
 .card-projeto {

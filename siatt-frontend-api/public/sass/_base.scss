@@ -84,3 +84,13 @@ body {
 * {
   font-family:'Times New Roman', Times, serif;
 }
+
+#__next {
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  padding: 0rem 3.75rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; 
+}
