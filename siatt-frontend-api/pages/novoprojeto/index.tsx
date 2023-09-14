@@ -22,15 +22,17 @@ function Projetos({ nav} : { nav: NavProps}) {
         <title>Projetos</title>
       </Head>
       <Nav {...nav} />
-      <div className="conteudo">
-        <div className="btnNovoProjeto">
-            <label>Nome do projeto: </label><input type='text' ></input>
-        </div>
-        <div id="projetos">
-            <UploadaerXlsx rota="/Rota_Tarefas" />
-            <UploadaerXlsx rota="/Rota_Recursos" />
-        </div>
-      </div>
+      <form className="conteudo">
+          <div className="btnNovoProjeto">
+              <label>Nome do projeto: </label><input type='text' ></input>
+          </div>
+          <div id="projetos">
+              <UploadaerXlsx rota="/Rota_Tarefas" />
+              <UploadaerXlsx rota="/Rota_Recursos" />
+          </div>
+          
+          <button type="submit">Cadastrar</button>
+      </form>
       <Footer />
     </>
   )

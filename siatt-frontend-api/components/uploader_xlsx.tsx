@@ -15,10 +15,14 @@ export default function UploadaerXlsx(props: UploaderProps) {
       reader.onload = (e) => {
         const data = e.target?.result;
         const workbook = XLSX.read(data, { type: 'binary' });
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-        const parsedData = XLSX.utils.sheet_to_json(sheet);
-        console.log(parsedData);
+        let parsedData : any = []
+        workbook.SheetNames.forEach(sheetName => {
+          const sheet = workbook.Sheets[sheetName];
+          parsedData.push(XLSX.utils.sheet_to_json(sheet));
+  
+        });
+
+        console.log(parsedData);       
 
         fetch(`${props.rota}`, {
           method: 'POST',
