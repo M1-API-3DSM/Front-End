@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, createContext } from 'react';
 import * as XLSX from 'xlsx';
 

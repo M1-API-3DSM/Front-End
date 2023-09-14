@@ -4,6 +4,7 @@ import Nav, {Papel, NavProps} from '../../components/nav';
 import Footer from '../../components/footer';
 import UploadaerXlsx from '../../components/uploader_xlsx';
 import '../../public/css/novoprojeto.css';
+import InputCapture from '../../components/Inputs/input_novo_projeto';
 
 
 export async function getServerSideProps() {
@@ -22,17 +23,15 @@ function Projetos({ nav} : { nav: NavProps}) {
         <title>Projetos</title>
       </Head>
       <Nav {...nav} />
-      <form className="conteudo">
+      <div className="conteudo">
           <div className="btnNovoProjeto">
-              <label>Nome do projeto: </label><input type='text' ></input>
+              <InputCapture rota='/teste_novoProjeto'/>
           </div>
           <div id="projetos">
-              <UploadaerXlsx rota="/Rota_Tarefas" />
+              <UploadaerXlsx rota="/xlsx_tarefas" />
               <UploadaerXlsx rota="/Rota_Recursos" />
           </div>
-          
-          <button type="submit">Cadastrar</button>
-      </form>
+      </div>
       <Footer />
     </>
   )
