@@ -56,7 +56,7 @@ function Projetos({ nav, data } : { nav: NavProps, data: cardProps[] }) {
       </Head>
       <Nav {...nav} />
       <div className="conteudo">
-        <input type="button" value="+ Adicionar Projeto" id="botao-projetos"></input>
+        <a href='/novoprojeto' id="botao-projetos">+ Adicionar Projeto</a>
         <div id="projetos">
           {data.map(((projeto, index)=> {
             return <CardProjeto key={index} {...projeto} />
