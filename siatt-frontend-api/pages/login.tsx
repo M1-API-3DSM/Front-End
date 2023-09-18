@@ -8,6 +8,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
+      <div id="box-login">
         <h1 id="logo">M1</h1>
         <div className="form-block">
           <div className="form-field">
@@ -19,6 +20,7 @@ export default function Login() {
             <input type="password" name="usuario" className="form-input"></input>
           </div>
         <input type="button" value="Login" className="form-submit"></input>
+      </div>
       </div>
     </>
   )
