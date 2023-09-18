@@ -175,4 +175,8 @@ input[type=button], input[type=submit] {
   border: none;
 }
 
+.form-submit:hover {
+  outline: 1px solid #FFFFFF;
+}
+
 /*# sourceMappingURL=login.css.map */
