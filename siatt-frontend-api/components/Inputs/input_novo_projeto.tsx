@@ -31,6 +31,7 @@ export default function InputCapture(props: InputCaptureProps) {
     <div>
         <label>Nome do projeto: </label>
         <input
+            name='NomeProjeto'
             type="text"
             onBlur={handleBlur}
             onChange={(e) => setInputValue(e.target.value)}

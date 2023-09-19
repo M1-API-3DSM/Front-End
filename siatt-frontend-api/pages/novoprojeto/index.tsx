@@ -1,14 +1,15 @@
 import Head from 'next/head';
 import React from 'react';
-import Nav, {Papel, NavProps} from '../../components/nav';
+import Nav, { Papel, NavProps } from '../../components/nav';
 import Footer from '../../components/footer';
 import UploadaerXlsx from '../../components/uploader_xlsx';
 import '../../public/css/novoprojeto.css';
 import InputCapture from '../../components/Inputs/input_novo_projeto';
+import InputSalvarProjeto from '../../components/Inputs/input_salvar_projeto';
 
 
 export async function getServerSideProps() {
-  const nav: NavProps = {papel: Papel.EngenheiroChefe}
+  const nav: NavProps = { papel: Papel.EngenheiroChefe }
   return {
     props: {
       nav
@@ -16,22 +17,25 @@ export async function getServerSideProps() {
   };
 }
 
-function Projetos({ nav} : { nav: NavProps}) {
-  return(
+function Projetos({ nav }: { nav: NavProps }) {
+  return (
     <>
       <Head>
         <title>Projetos</title>
       </Head>
       <Nav {...nav} />
-      <div className="conteudo">
+     
+        <div className="conteudo">
           <div className="btnNovoProjeto">
-              <InputCapture rota='/teste_novoProjeto'/>
+            <InputCapture rota='/teste_novoProjeto' />
           </div>
           <div id="projetos">
-              <UploadaerXlsx rota="/xlsx_tarefas" />
-              <UploadaerXlsx rota="/Rota_Recursos" />
+            <UploadaerXlsx rota="/xlsx_tarefas" />
+            <UploadaerXlsx rota="/Rota_Recursos" />
           </div>
-      </div>
+        </div>
+        <InputSalvarProjeto fieldsToCheck={['NomeProjeto']} redirectTo="/projetos" />
+
       <Footer />
     </>
   )
