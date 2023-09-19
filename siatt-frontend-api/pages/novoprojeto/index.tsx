@@ -7,7 +7,6 @@ import '../../public/css/novoprojeto.css';
 import InputCapture from '../../components/Inputs/input_novo_projeto';
 import InputSalvarProjeto from '../../components/Inputs/input_salvar_projeto';
 
-
 export async function getServerSideProps() {
   const nav: NavProps = { papel: Papel.EngenheiroChefe }
   return {
