@@ -3,9 +3,9 @@ import React from 'react';
 import Nav, { Papel, NavProps } from '../../components/nav';
 import Footer from '../../components/footer';
 import UploadaerXlsx from '../../components/uploader_xlsx';
-import '../../public/css/novoprojeto.css';
 import InputCapture from '../../components/Inputs/input_novo_projeto';
 import InputSalvarProjeto from '../../components/Inputs/input_salvar_projeto';
+import '../../public/css/novoprojeto.css';
 
 export async function getServerSideProps() {
   const nav: NavProps = { papel: Papel.EngenheiroChefe }
@@ -29,7 +29,7 @@ function Projetos({ nav }: { nav: NavProps }) {
             <InputCapture rota='/teste_novoProjeto' />
           </div>
           <div id="projetos">
-            <UploadaerXlsx rota="/xlsx_tarefas" />
+            <UploadaerXlsx rota="http://localhost:3000/projetoItem/criar" />
             <UploadaerXlsx rota="/Rota_Recursos" />
           </div>
         </div>

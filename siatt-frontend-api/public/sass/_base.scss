@@ -6,8 +6,8 @@ $light-brown: #7A431D;
 
 nav {
   display: flex;
-  height: 9.625rem;
-  padding: 0.625rem 5rem;
+  height: 5%;
+  padding: 2%;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
@@ -18,7 +18,7 @@ nav {
 
   ul {
     display: flex;
-    height: 6.25rem;
+    height: 10%;
     justify-content: center;
     align-items: center;
     gap: 2.1875rem; 
@@ -30,7 +30,7 @@ nav {
 
   a {
     color: $white;
-    font-size: 1.875rem;
+    font-size: 150%;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -43,7 +43,7 @@ nav {
 
   h3 {
     color: $bronze;
-    font-size: 5rem;
+    font-size: 4rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal; 
@@ -52,7 +52,7 @@ nav {
 
 footer {
   display: flex;
-  height: 4.25rem;
+  height: 5%;
   margin-top: 1.2rem;
   margin-bottom: 0;
   padding: 0.625rem 5rem;
@@ -67,7 +67,7 @@ footer {
 
   span {
     color: $bronze;
-    font-size: 1.5625rem;
+    font-size: 100%;
     font-style: normal;
     font-weight: 400;
     line-height: normal; 
