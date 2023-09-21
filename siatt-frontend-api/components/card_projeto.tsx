@@ -10,8 +10,8 @@ export default function CardProjeto(props: cardProps){
     <a href={`/projetos/${props.id_projeto}`}>
     <div className="card-projeto">
           <span>{props.nome_projeto}</span>
-          <span>Entrega: {props.data_entrega}</span>
-          <span>Progresso: {props.progresso}%</span>
+          {/* <span>Entrega: {props.data_entrega}</span> */}
+          <span>Progresso: 0%</span>
     </div>
     </a>
   )

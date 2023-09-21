@@ -1,45 +1,27 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardProjeto, { cardProps } from '../../components/card_projeto';
-import Nav, {Papel, NavProps} from '../../components/nav';
+import Nav, { Papel, NavProps } from '../../components/nav';
 import Footer from '../../components/footer';
-import { formataDataYYYYMMDD } from '../../utils/DateUtils';
 import '../../public/css/projetos.css';
 
 export async function fetchData(): Promise<cardProps[]> {
-  const projetos = [
-    {
-      id_projeto: 1,
-      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-      data_entrega: formataDataYYYYMMDD(new Date()),
-      progresso: 20,
-    },
-    {
-      id_projeto: 2,
-      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-      data_entrega: formataDataYYYYMMDD(new Date()),
-      progresso: 20,
-    },
-    {
-      id_projeto: 3,
-      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-      data_entrega: formataDataYYYYMMDD(new Date()),
-      progresso: 20,
-    },
-    {
-      id_projeto: 4,
-      nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-      data_entrega: formataDataYYYYMMDD(new Date()),
-      progresso: 20,
+  try {
+    const response = await fetch('http://localhost:3000/projetoItem'); // Substitua 'URL_DO_SEU_BACKEND' pela URL real do seu endpoint de GET.
+    if (!response.ok) {
+      throw new Error('Erro ao buscar dados do servidor');
     }
-  ];
-
-  return projetos;
+    const data = await response.json();
+    return data; // Assumindo que seus dados são retornados como um array de objetos semelhantes a cardProps.
+  } catch (error) {
+    console.error('Erro ao buscar dados do servidor:', error);
+    return [];
+  }
 }
 
 export async function getServerSideProps() {
   const data = await fetchData();
-  const nav: NavProps = {papel: Papel.EngenheiroChefe}
+  const nav: NavProps = { papel: Papel.EngenheiroChefe }
   return {
     props: {
       nav,
@@ -48,8 +30,8 @@ export async function getServerSideProps() {
   };
 }
 
-function Projetos({ nav, data } : { nav: NavProps, data: cardProps[] }) {
-  return(
+function Projetos({ nav, data }: { nav: NavProps, data: cardProps[] }) {
+  return (
     <>
       <Head>
         <title>Projetos</title>
@@ -58,7 +40,7 @@ function Projetos({ nav, data } : { nav: NavProps, data: cardProps[] }) {
       <div className="conteudo">
         <a href='/novoprojeto' id="botao-projetos">+ Adicionar Projeto</a>
         <div id="projetos">
-          {data.map(((projeto, index)=> {
+          {data.map(((projeto, index) => {
             return <CardProjeto key={index} {...projeto} />
           }))}
         </div>
