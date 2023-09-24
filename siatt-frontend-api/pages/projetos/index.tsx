@@ -33,7 +33,7 @@ export async function fetchData(): Promise<cardProps[]> {
   //   }
   // ];
 
-  const response = await fetch("http://localhost:3000/projetos");
+  const response = await fetch("http://localhost:3000/projetos", { method: 'GET' });
   const data = response.json()
   console.log(data);
   return data;
