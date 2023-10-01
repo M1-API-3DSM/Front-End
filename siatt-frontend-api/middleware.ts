@@ -10,22 +10,23 @@ export async function middleware(request: NextRequest) {
 }
  
 async function validateUser(request: NextRequest): Promise<boolean> {
-  const key = request.cookies.get("key");
-  console.log(key);
+  // const key = request.cookies.get("key");
+  // console.log(key);
 
-  if (!key) { 
-    console.log("missing cookie");
-    return false;
-  }
+  // if (!key) { 
+  //   console.log("missing cookie");
+  //   return false;
+  // }
 
-  const validation_response = await fetch(`http://localhost:8080/user/check?key=${key.value}`, { method: 'GET' });
+  // const validation_response = await fetch(`http://localhost:8080/user/check?key=${key.value}`, { method: 'GET' });
 
-  console.log(validation_response.body);
-  if (validation_response.ok) {
-    return true;
-  } else {
-    return false;
-  }
+  // console.log(validation_response.body);
+  // if (validation_response.ok) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  return true;
 }
 
 export const config = {
