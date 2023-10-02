@@ -6,33 +6,6 @@ import Footer from '../../components/footer';
 import '../../public/css/projetos.css';
 
 export async function fetchData(): Promise<cardProps[]> {
-  // const projetos = [
-  //   {
-  //     id_projeto: 1,
-  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-  //     data_entrega: formataDataYYYYMMDD(new Date()),
-  //     progresso: 20,
-  //   },
-  //   {
-  //     id_projeto: 2,
-  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-  //     data_entrega: formataDataYYYYMMDD(new Date()),
-  //     progresso: 20,
-  //   },
-  //   {
-  //     id_projeto: 3,
-  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-  //     data_entrega: formataDataYYYYMMDD(new Date()),
-  //     progresso: 20,
-  //   },
-  //   {
-  //     id_projeto: 4,
-  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
-  //     data_entrega: formataDataYYYYMMDD(new Date()),
-  //     progresso: 20,
-  //   }
-  // ];
-
   const response = await fetch("http://localhost:3000/projetos", { method: 'GET' });
   const data = response.json()
   console.log(data);
@@ -41,7 +14,7 @@ export async function fetchData(): Promise<cardProps[]> {
 
 export async function getServerSideProps() {
   const data = await fetchData();
-  const nav: NavProps = { papel: Papel.EngenheiroChefe }
+  const nav: NavProps = { papel: Papel.LiderDeProjeto }
   return {
     props: {
       nav,
@@ -58,7 +31,6 @@ function Projetos({ nav, data }: { nav: NavProps, data: cardProps[] }) {
       </Head>
       <Nav {...nav} />
       <div className="conteudo">
-        <a href='/novoprojeto' id="botao-projetos">+ Adicionar Projeto</a>
         <div id="projetos">
           {data.length != 0 ? (
             data.map((projeto, index) => {

@@ -1,16 +1,14 @@
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import TituloPainel, { TituloPainelProps, PainelData, Item } from '../../components/titulo_painel_projetos';
+import ProjetoPainel, {TituloProjetoPainelProps} from '../../components/projeto_painel_projetos';
 import Head from 'next/head';
 import Nav, {Papel, NavProps} from '../../components/nav';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Footer from '../../components/footer';
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next';
 
 import '../../public/css/projetos.css'
  
-export default function Projeto({ nav, id, data }: { nav: NavProps, id: number, data: any }) {
+export default function Projeto({ nav, id, data }: { nav: NavProps, id: number, data: any}) {
   return(
     <>
       <Head>
@@ -18,44 +16,121 @@ export default function Projeto({ nav, id, data }: { nav: NavProps, id: number, 
       </Head>
       <Nav {...nav} />
       <div className='conteudo'>
-        <div id="projetos">
-          {Object.keys(data).map((projeto_pai, index) =>{
-            return(
-              <Accordion key={index}>
-                <AccordionSummary
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                <h2>{projeto_pai}</h2>
-                </AccordionSummary>
-                <AccordionDetails>
-                <ul>
-                  {data[projeto_pai].map((projeto_filho: any) => (
-                    <li key={projeto_filho}>
-                      <a href={`/${id}/${projeto_filho}`}>
-                        {projeto_filho}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                </AccordionDetails>
-              </Accordion>
-            )
-          })}
-        </div>
+        {mapItemChildren(data.itens, 0, id.toString())}
       </div>
       <Footer />
     </>
   )
 }
 
+function mapItemChildren(itens: Array<Item>, padding: number = 0, id_item_pai: string) {
+  return (
+    <div id="painel-projetos">
+      {itens.map((item, index) => (
+        <div className='container-projeto' key={index}>
+          {item.itens_filhos.length !== 0 ? (
+            <TituloPainel
+              texto={`${item.item} ${item.nome_item}`}
+              padding={padding}
+            />
+          ) : (
+            <ProjetoPainel
+              id_projeto_principal={id_item_pai}
+              id={item.item}
+              item={item.nome_item}
+              padding={padding}
+            />
+          )}
+          {item.itens_filhos.length !== 0 &&
+            mapItemChildren(item.itens_filhos, padding + 20, item.item)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export async function fetchData(id: string): Promise<PainelData[]> {
+  // const projetos = [
+  //   {
+  //     id_projeto: 1,
+  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+  //     data_entrega: formataDataYYYYMMDD(new Date()),
+  //     progresso: 20,
+  //   },
+  //   {
+  //     id_projeto: 2,
+  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+  //     data_entrega: formataDataYYYYMMDD(new Date()),
+  //     progresso: 20,
+  //   },
+  //   {
+  //     id_projeto: 3,
+  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+  //     data_entrega: formataDataYYYYMMDD(new Date()),
+  //     progresso: 20,
+  //   },
+  //   {
+  //     id_projeto: 4,
+  //     nome_projeto: 'Sistema de Reconhecimento de motociclistas',
+  //     data_entrega: formataDataYYYYMMDD(new Date()),
+  //     progresso: 20,
+  //   }
+  // ];
+
+  const response = await fetch(`http://localhost:3000/projetoItem/${id}`);
+  const data = response.json()
+  console.log(data);
+  return data;
+}
+
 export async function getServerSideProps(context: any) {
-  const { id } = context.query;
+  const { params } = context;
+  const { id } = params;
+
   const nav: NavProps = {papel: Papel.EngenheiroChefe}
-  const data = {
-    '1.1': ['1.1.1', '1.1.2', '1.1.3'],
-    '1.2': ['1.2.1', '1.2.2']
-  }
+//   const data: PainelData = {
+// 	"nome_projeto": "UAV",
+// 	"itens": [
+// 		{
+// 			"item": "1",
+// 			"nome_item": "UAV Design",
+// 			"itens_filhos": [
+// 				{
+// 					"item": "1.1",
+// 					"nome_item": "Air Vehicle",
+// 					"itens_filhos": [
+// 						{
+// 							"item": "1.1.1",
+// 							"nome_item": "Airframe",
+// 							"itens_filhos": []
+// 						},
+// 						{
+// 							"item": "1.1.2",
+// 							"nome_item": "Propulsion",
+// 							"itens_filhos": []
+// 						},
+// 						{
+// 							"item": "1.1.3",
+// 							"nome_item": "Communications",
+// 							"itens_filhos": []
+// 						}
+// 					]
+// 				},
+// 				{
+// 					"item": "1.2",
+// 					"nome_item": "Payload",
+// 					"itens_filhos": []
+// 				},
+// 				{
+// 					"item": "1.3",
+// 					"nome_item": "Ground Segment",
+// 					"itens_filhos": []
+// 				}
+// 			]
+// 		}
+// 	]
+// }
+  const data = await fetchData(id);
 
   return {
     props: {

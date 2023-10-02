@@ -23,7 +23,8 @@ export default function Nav( props: NavProps ){
       <nav>
         <h3>M1</h3>
         <ul>
-          <li><a href="#">Painel</a></li>
+          <li><a href="#">Projetos</a></li>
+          <li><a href="#">Sair</a></li>
         </ul>
       </nav>
     )
